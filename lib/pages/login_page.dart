@@ -5,7 +5,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 }
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class LoginScreen extends StatelessWidget {
 }
 
 class TopBar extends StatelessWidget {
-  const TopBar({super.key});
+  const TopBar({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class TopBar extends StatelessWidget {
 }
 
 class LoginContent extends StatefulWidget {
-  const LoginContent({super.key});
+  const LoginContent({Key? key});
 
   @override
   _LoginContentState createState() => _LoginContentState();
@@ -96,110 +96,117 @@ class _LoginContentState extends State<LoginContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          'Favor de Ingresar sus Crendenciales de Acceso para poder Continuar:',
-          style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+    return SingleChildScrollView(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
         ),
-        const SizedBox(height: 16.0),
-        TextFormField(
-          decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.person, color: Colors.orange),
-            labelText: 'Usuario',
-            fillColor: Colors.white,
-            filled: true,
-          ),
-        ),
-        const SizedBox(height: 16.0),
-        TextFormField(
-          obscureText: _obscureText,
-          decoration: InputDecoration(
-            prefixIcon: const Icon(Icons.lock, color: Colors.orange),
-            labelText: 'Contraseña',
-            fillColor: Colors.white,
-            filled: true,
-            suffixIcon: IconButton(
-              icon: Icon(
-                _obscureText ? Icons.visibility_off : Icons.visibility,
-                color: Colors.grey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Favor de Ingresar sus Credenciales de Acceso para poder Continuar:',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
-              onPressed: _togglePasswordVisibility,
             ),
-          ),
-        ),
-        const SizedBox(height: 16.0),
-        ElevatedButton(
-          onPressed: () {
-            // Lógica para iniciar sesión
-            // Puedes agregar aquí la validación de los campos y otras funcionalidades
-            print('Iniciar sesión');
-          },
-          child: const Text('Iniciar sesión'),
-          style: ElevatedButton.styleFrom(
-            primary: Colors.orange,
-            onPrimary: Colors.white,
-          ),
-        ),
-        const SizedBox(height: 16.0),
-        ElevatedButton.icon(
-          onPressed: () {
-            // Lógica para iniciar sesión con Google
-            print('Iniciar sesión con Google');
-          },
-          icon: const Icon(Icons.login, color: Colors.white),
-          label: const Text('Iniciar sesión con Google'),
-          style: ElevatedButton.styleFrom(
-            primary: Colors.red,
-          ),
-        ),
-        const SizedBox(height: 16.0),
-        ElevatedButton.icon(
-          onPressed: () {
-            // Lógica para iniciar sesión con Facebook
-            print('Iniciar sesión con Facebook');
-          },
-          icon: const Icon(Icons.login, color: Colors.white),
-          label: const Text('Iniciar sesión con Facebook'),
-          style: ElevatedButton.styleFrom(
-            primary: Colors.blueAccent,
-          ),
-        ),
-        const SizedBox(height: 16.0),
-        TextButton(
-          onPressed: () {
-            // Lógica para recuperar la contraseña
-            print('Olvidaste tu contraseña');
-          },
-          child: const Text(
-            '¿Olvidaste tu contraseña?',
-            style: TextStyle(
-              color: Colors.black,
-              decoration: TextDecoration.underline,
+            const SizedBox(height: 16.0),
+            TextFormField(
+              decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.person, color: Colors.orange),
+                labelText: 'Usuario',
+                fillColor: Colors.white,
+                filled: true,
+              ),
             ),
-          ),
+            const SizedBox(height: 16.0),
+            TextFormField(
+              obscureText: _obscureText,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.lock, color: Colors.orange),
+                labelText: 'Contraseña',
+                fillColor: Colors.white,
+                filled: true,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                    color: Colors.grey,
+                  ),
+                  onPressed: _togglePasswordVisibility,
+                ),
+              ),
+            ),
+            const SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                // Lógica para iniciar sesión
+                // Puedes agregar aquí la validación de los campos y otras funcionalidades
+                print('Iniciar sesión');
+              },
+              child: const Text('Iniciar sesión'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.orange,
+                onPrimary: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 5.0),
+            ElevatedButton.icon(
+              onPressed: () {
+                // Lógica para iniciar sesión con Google
+                print('Iniciar sesión con Google');
+              },
+              icon: const Icon(Icons.login, color: Colors.white),
+              label: const Text('Iniciar sesión con Google'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red,
+              ),
+            ),
+            const SizedBox(height: 5.0),
+            ElevatedButton.icon(
+              onPressed: () {
+                // Lógica para iniciar sesión con Facebook
+                print('Iniciar sesión con Facebook');
+              },
+              icon: const Icon(Icons.login, color: Colors.white),
+              label: const Text('Iniciar sesión con Facebook'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blueAccent,
+              ),
+            ),
+            const SizedBox(height: 5.0),
+            TextButton(
+              onPressed: () {
+                // Lógica para recuperar la contraseña
+                print('Olvidaste tu contraseña');
+              },
+              child: const Text(
+                '¿Olvidaste tu contraseña?',
+                style: TextStyle(
+                  color: Colors.black,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10.0),
+            Image.asset(
+              'assets/images/img1.png', // Ruta de la imagen
+              height: 70.0,
+            ),
+            const SizedBox(height: 1.0),
+            const Text(
+              'Controla tu casa inteligente desde cualquier lugar',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+          ],
         ),
-        const SizedBox(height: 16.0),
-        Image.asset(
-          'assets/images/img1.png', // Ruta de la imagen
-          height: 100.0,
-        ),
-        const SizedBox(height: 8.0),
-        const Text(
-          'Controla tu casa inteligente desde cualquier lugar',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
